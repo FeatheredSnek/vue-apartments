@@ -3,11 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
     <title>vueApartments</title>
   </head>
 
   <body>
-    nice body    
+    <h1>nice body</h1>
+    <div id="app">
+      
+      <!-- Apartments list, filterable -->
+      <div style="background-color:bisque">
+        <h2>Apartments</h2>
+        <div style="border: 1px solid black;" v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)">
+          <p>Code: {{ item.code }}</p>
+          <p>Type: {{ item.bedrooms }} bedroom {{ item.type }}</p>
+          <p>
+            <span v-if="item.customColors">C</span>&nbsp;
+            <span v-if="item.customMods">M</span>
+          </p>
+          <p v-if="item.available">Available</p>
+          <p v-else>Not available</p>
+        </div>
+      </div>
+
+      <!-- Filter settings -->
+      <div style="background-color: pink;">
+        <h2>Filters ({{ filterCount }} filters active) -- <span @click="resetFilters">RESET</span></h2>
+        <div>
+          <label for="selectType">Apartment type</label>
+          <select name="selectType" v-model="filters.type">
+            <option value="null">Choose one</option>
+            <option value="suite">Suite</option>
+            <option value="studio">Studio</option>
+          </select>
+        </div>
+        <div>
+          <label for="maxPrice">Maximum price</label>
+          <input name="maxPrice" type="range" min="300" max="1000" step="50" v-model="filters.maxPrice" />
+        </div>
+        <div>
+          <label for="minSize">Minimum size</label>
+          <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
+        </div>
+        <div>
+          <label for="bedrooms">Bedrooms - {{ filters.bedrooms }}</label>
+          <input name="bedrooms" type="range" min="1" max="4" step="1" v-model="filters.bedrooms" />
+        </div>
+        <div>
+          <label for="bathroom">Additional bathroom</label>
+          <input name="bathroom" type="checkbox" v-model="filters.bathroom" />
+        </div>
+        <div>
+          <label for="storage">Storage space</label>
+          <input name="storage" type="checkbox" v-model="filters.storage" />
+        </div>
+      </div>
+
+      <!-- Selected apartment details -->
+      <div v-if="selected !== null">
+        <h2>Apartment {{ selectedData.code }}</h2>
+        <h3>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</h3>
+        <p>
+          <span v-if="selectedData.customColors">C</span>&nbsp;
+          <span v-if="selectedData.customMods">M</span>&nbsp;
+          <span v-if="selectedData.secure">S</span>
+        </p>
+        <p>{{ selectedData.description }}</p>
+        <!-- Custom price calculation form -->
+        <div>
+          <div>
+            <label for="furnishing">Furnishing assistance</label>
+            <input name="furnishing" type="checkbox" v-model="perks.furnishing">
+          </div>
+          <div>
+            <label for="billing">Flexible billing</label>
+            <input name="billing" type="checkbox" v-model="perks.billing">
+          </div>
+          <p>Calculated price: {{ calculatedPrice }}</p>
+        </div>
+        <button>Contact the sales agent</button>
+      </div>
+
+      <!-- Placeholder when no apartment is selected -->
+      <!-- TODO control display with class binding so its rendered at the start, for seo -->
+      <div v-else>
+        <h2>Apartments ready to live in</h2>
+        <p>promotional text</p>
+        <button>Contact the sales agent</button>
+      </div>
+
+    </div>
   </body>
+
+  <script src="main.js"></script>
 
 </html>
