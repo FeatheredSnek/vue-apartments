@@ -15,19 +15,37 @@ p {
   padding: 0;
 }
 
+/* small screen display */
 @media screen and (max-width: 576px)  {
   html {
     font-size: 16px;
   }
+  .apartments-list {
+    grid-template: auto / auto;
+  }
 }
 
+/* navigation toggleable with hamburger on smallish screens */
 @media screen and (max-width: 768px)  {
   .nav-desktop {
-    background-color: blueviolet;
     display: none !important;
   }
   .nav-toggle {
     display: block !important;
+  }
+}
+
+/* 2 column apartment list */
+@media screen and (min-width: 768.01px) and (max-width: 1080px) {
+  .apartments-list {
+    grid-template: auto / auto auto;
+  }
+}
+
+/* 3 column apartment list */
+@media screen and (min-width: 1080.01px) {
+  .apartments-list {
+    grid-template: auto / auto auto auto;
   }
 }
 
@@ -115,8 +133,10 @@ header {
 
 .apartments-list {
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  column-gap: 2rem;
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -133,11 +153,7 @@ header {
   align-items: center;
   box-shadow: var(--shadow-basic);
 }
-/* 
-.list-item-info {
 
-}
-*/
 .list-item > i {
   font-size: 2rem;
 }
