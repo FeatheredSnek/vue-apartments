@@ -25,7 +25,7 @@ const testData = [
     balcony: false,
     storage: true,
     bathroom: true,
-    customColors: true,
+    customColors: false,
     customMods: true,
     secure: true,
     description: 
@@ -33,7 +33,7 @@ const testData = [
   },
   {
     code: '03b',
-    available: true,
+    available: false,
     type: 'suite',
     bedrooms: 2,
     basePrice: 650,
