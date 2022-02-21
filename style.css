@@ -152,7 +152,14 @@ header {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  transition: outline 0.5s;
+  outline: none 1px white;
   box-shadow: var(--shadow-basic);
+}
+
+.list-item:hover {
+  outline: solid 1px #d2d2d2;
 }
 
 .list-item > i {
