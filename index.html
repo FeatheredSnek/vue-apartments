@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;400;700&display=swap" rel="stylesheet">     <script src="https://unpkg.com/vue@3"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;400;700&display=swap" rel="stylesheet">     
+    <script src="https://unpkg.com/vue@3"></script>
     <link rel="stylesheet" href="style.css">
     <title>vueApartments</title>
   </head>
@@ -22,13 +23,13 @@
           <a href="#">Contact</a>
         </nav>
         <!-- Mobile navigation toggle -->
-        <button class="nav-toggle">
-          <img src="img/list.svg" alt="Open navigation" class="nav-open-button show" />
-          <img src="img/x-lg.svg" alt="Close navigation" class="nav-close-button hidden" />
+        <button class="nav-toggle" id="nav-toggle">
+          <img src="img/list.svg" alt="Open navigation" class="nav-open-icon toggle-display" id="nav-open-icon" />
+          <img src="img/x-lg.svg" alt="Close navigation" class="nav-close-icon invisible toggle-display" id="nav-close-icon" />
         </button>
       </div>
       <!-- Mobile navigation -->
-      <nav class="nav-mini">
+      <nav class="nav-mini hidden invisible toggle-display" id="nav-mini">
         <a href="#">About us</a>
         <a href="#">Apartments</a>
         <a href="#">Contact</a>
@@ -136,5 +137,6 @@
   </body>
 
   <script src="main.js" type="module"></script>
+  <script src="nav.js"></script>
 
 </html>

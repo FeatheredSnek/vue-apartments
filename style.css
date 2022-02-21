@@ -37,8 +37,7 @@ header {
   width: 100%;
   height: 5rem;
   margin: 0;
-  /* background-color: var(--white); */
-  background-color: aquamarine;
+  background-color: var(--white);
   box-shadow: var(--shadow-basic);
 }
 
@@ -68,21 +67,21 @@ header {
 .nav-toggle {
   display: none;
   height: 2rem;
+  width: 2rem;
   border: none;
   background: none;
   cursor: pointer;
 }
 
 .nav-toggle > img {
+  position: relative;
   height: 2rem;
+  width: 2rem;
+  transition: opacity 0.5s;
 }
 
-.shown {
-  display: block;
-}
-
-.hidden {
-  display: none;
+.nav-close-icon {
+  top: -2.1rem;
 }
 
 .nav-mini {
@@ -104,4 +103,22 @@ header {
 
 main {
   margin-top: 300px;
+}
+
+/* animation helper classes */
+
+.hidden {
+  display: none !important;
+}
+
+.no-overflow {
+  overflow-y: hidden;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.toggle-display {
+  transition: opacity 0.5s;
 }
