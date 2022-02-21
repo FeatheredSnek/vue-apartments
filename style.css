@@ -3,8 +3,16 @@ html {
   font-family: 'Prompt', sans-serif;
   --maxwidth: 1200px;
   --white: white;
+  --light-gray: #c3c3c3;
+  --color-good: darkgreen;
+  --color-bad: darkred;
   --background: #f2f2f2;
   --shadow-basic: 0px 1rem 1rem rgba(0, 0, 0, 0.03);
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 576px)  {
@@ -32,6 +40,8 @@ a {
   color: black;
   text-decoration: none;
 }
+
+/* header styling */
 
 header {
   width: 100%;
@@ -101,9 +111,66 @@ header {
   display: block;
 }
 
-main {
-  margin-top: 300px;
+/* app styling */
+
+.apartments-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
 }
+
+.list-item {
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background: var(--white);
+  margin: 1rem 0;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-basic);
+}
+/* 
+.list-item-info {
+
+}
+*/
+.list-item > i {
+  font-size: 2rem;
+}
+
+.available {
+  color: var(--color-good)
+}
+
+.not-available {
+  color: var(--color-bad)
+}
+
+.list-item-header {
+  font-size: 1.2rem;
+}
+
+.list-item-type {
+  color: var(--light-gray);
+}
+
+.list-item-icons {
+  font-size: 0.8rem;
+  color: var(--light-gray);
+}
+
+.list-item-icons > * {
+  margin-right: 0.5rem;
+}
+
+/* 
+.list-item-icons > img {
+
+} */
 
 /* animation helper classes */
 
