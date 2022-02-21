@@ -46,6 +46,84 @@ const testData = [
     secure: true,
     description: 
       'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },
+  {
+    code: '15t',
+    available: false,
+    type: 'suite',
+    bedrooms: 2,
+    basePrice: 650,
+    size: 48,
+    balcony: true,
+    storage: true,
+    bathroom: true,
+    customColors: true,
+    customMods: true,
+    secure: true,
+    description: 
+      'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },
+  {
+    code: '55t',
+    available: false,
+    type: 'suite',
+    bedrooms: 2,
+    basePrice: 650,
+    size: 48,
+    balcony: true,
+    storage: true,
+    bathroom: true,
+    customColors: true,
+    customMods: true,
+    secure: true,
+    description: 
+      'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },  {
+    code: '33y',
+    available: true,
+    type: 'suite',
+    bedrooms: 2,
+    basePrice: 650,
+    size: 48,
+    balcony: true,
+    storage: true,
+    bathroom: true,
+    customColors: true,
+    customMods: true,
+    secure: true,
+    description: 
+      'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },  {
+    code: '73b',
+    available: false,
+    type: 'suite',
+    bedrooms: 2,
+    basePrice: 650,
+    size: 48,
+    balcony: true,
+    storage: true,
+    bathroom: true,
+    customColors: false,
+    customMods: false,
+    secure: false,
+    description: 
+      'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  },
+  {
+    code: '06b',
+    available: false,
+    type: 'suite',
+    bedrooms: 2,
+    basePrice: 650,
+    size: 48,
+    balcony: true,
+    storage: true,
+    bathroom: true,
+    customColors: true,
+    customMods: true,
+    secure: true,
+    description: 
+      'Aquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   }
 ]
 
