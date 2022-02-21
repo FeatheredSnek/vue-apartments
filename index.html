@@ -40,7 +40,55 @@
 
     <main>
       <div id="app">
+
+        <!-- Filter settings -->
         
+        <!-- Filters header - always displayed -->
+        <div class="filters-header">
+          <div>
+            <i class="bi-x-lg" title="Reset filters" @click="resetFilters" ></i>
+            <p class="filters-count">{{ filterCount }} active</p>
+            <i class="bi-chevron-down" @click="openFilters"></i>
+          </div>
+        </div>
+
+        <!-- Filters options - extendable -->
+        <div class="filters">
+          <div class="filters-controls-container">
+            <div class="filter-range-container">
+              <div>
+                <label for="maxPrice">Max price per sqm</label>
+                <p>{{ filters.maxPrice ? `$${filters.maxPrice}` : 'not set' }}</p>
+              </div>
+              <input name="maxPrice" type="range" min="300" max="1000" step="50" v-model="filters.maxPrice" />
+            </div>
+            <div class="filter-range-container">
+              <div>
+                <label for="minSize">Minimum size</label>
+                <p>{{ filters.minSize ? `${filters.minSize} sqm` : 'not set' }}</p>
+              </div>
+                <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
+            </div>
+            <div class="filter-range-container">
+              <div>
+                <label for="bedrooms">Bedrooms {{ filters.bedrooms }}</label>
+                <p>{{ filters.bedrooms ? filters.bedrooms : 'not set' }}</p>
+              </div>
+              <input name="bedrooms" type="range" min="1" max="4" step="1" v-model="filters.bedrooms" />
+            </div>
+            <div class="filter-checks-container">
+              <div>
+                <label for="bathroom">Additional bathroom</label>
+                <input name="bathroom" type="checkbox" v-model="filters.bathroom" />
+              </div>
+              <div>
+                <label for="storage">Storage space</label>
+                <input name="storage" type="checkbox" v-model="filters.storage" />
+              </div>
+            </div>
+          </div>
+        </div>
+            
         <!-- Apartments list, filterable -->
         <div class="apartments-list">
           <div v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)" class="list-item">
@@ -51,46 +99,12 @@
                 <i v-if="item.customColors" class="bi-palette"></i>
                 <i v-if="item.customMods" class="bi-tools"></i>
                 <i v-if="item.secure" class="bi-shield-lock"></i>
-              </p>
-            </div>
+              </p>  
+            </div>  
             <i v-if="item.available" class="bi-check-circle available" title="Avaliable"></i>
             <i v-else class="bi-x-circle not-available" title="Not avaliable"></i>
-          </div>
-        </div>
-
-        <!-- Filter settings -->
-        <div style="background-color: pink;">
-          <h2>Filters ({{ filterCount }} filters active) -- <span @click="resetFilters">RESET</span></h2>
-          <div>
-            <label for="selectType">Apartment type</label>
-            <select name="selectType" v-model="filters.type">
-              <option value="null">Choose one</option>
-              <option value="suite">Suite</option>
-              <option value="studio">Studio</option>
-            </select>
-          </div>
-          <div>
-            <label for="maxPrice">Maximum price</label>
-            <input name="maxPrice" type="range" min="300" max="1000" step="50" v-model="filters.maxPrice" />
-          </div>
-          <div>
-            <label for="minSize">Minimum size</label>
-            <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
-          </div>
-          <div>
-            <label for="bedrooms">Bedrooms - {{ filters.bedrooms }}</label>
-            <input name="bedrooms" type="range" min="1" max="4" step="1" v-model="filters.bedrooms" />
-          </div>
-          <div>
-            <label for="bathroom">Additional bathroom</label>
-            <input name="bathroom" type="checkbox" v-model="filters.bathroom" />
-          </div>
-          <div>
-            <label for="storage">Storage space</label>
-            <input name="storage" type="checkbox" v-model="filters.storage" />
-          </div>
-        </div>
-
+          </div>  
+        </div>          
         <!-- Selected apartment details -->
         <div v-if="selected !== null">
           <h2>Apartment {{ selectedData.code }}</h2>

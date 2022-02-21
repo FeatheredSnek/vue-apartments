@@ -8,7 +8,10 @@ html {
   --color-bad: darkred;
   --background: #f2f2f2;
   --shadow-basic: 0px 1rem 1rem rgba(0, 0, 0, 0.03);
+  --shadow-pressed: 0px 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
 }
+
+/* generic element styling */
 
 p {
   margin: 0;
@@ -22,6 +25,16 @@ p {
   }
   .apartments-list {
     grid-template: auto / auto;
+  }
+  .filters-controls-container {
+    grid-template: auto / auto;
+  }
+}
+
+/* filters controls in 2 columns on not-small screens */
+@media screen and (min-width: 576.01px) {
+  .filters-controls-container {
+    grid-template: auto / auto auto;
   }
 }
 
@@ -62,6 +75,8 @@ a {
 /* header styling */
 
 header {
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: 6rem;
   margin: 0;
@@ -153,13 +168,14 @@ header {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: outline 0.5s;
-  outline: none 1px white;
+  transition: all 0.5s;
+  outline: solid 1px white;
   box-shadow: var(--shadow-basic);
 }
 
 .list-item:hover {
   outline: solid 1px #d2d2d2;
+  box-shadow: var(--shadow-pressed);
 }
 
 .list-item > i {
@@ -191,10 +207,140 @@ header {
   margin-right: 0.5rem;
 }
 
-/* 
-.list-item-icons > img {
+/* input elements styling */
 
-} */
+/* range styling made easier by slightly outdated
+https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+  background: white;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 1px;
+  background: black;
+  cursor: pointer;
+}
+
+/* checkbox styling, modified bootstrap 5 approach
+thank mr botstrop, but still praying to css deities for real svg support */
+
+input[type="checkbox"] {
+  width: 2.5rem;
+  height: 1.25rem;
+  vertical-align: top;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff' stroke='%23000' stroke-width='0.5' /%3e%3c/svg%3e");
+  background-size: contain;
+  transition: background-position .15s ease-in-out;
+  border: 1px solid black;
+  border-radius: 1.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-position: left center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000' stroke='%23000' stroke-width='0.5' /%3e%3c/svg%3e");
+}
+
+/* filters */
+
+.filters {
+  display: block;
+  width: 100%;
+  background-color: var(--white);
+  position: absolute;
+  box-shadow: var(--shadow-basic);
+}
+
+.filters-controls-container {
+  margin: auto;
+  max-width: 576px;
+  display: grid;
+  column-gap: 3rem;
+  row-gap: 1.5rem;
+  padding: 1.25rem 2rem 2rem 3rem;
+}
+
+.filter-range-container > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.filter-range-container > input {
+  width: 100%;
+}
+
+.filter-checks-container > div {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-checks-container > div > * {
+  display: block;
+}
+
+.filters-header {
+  background-color: var(--white);
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.filters-header > div {
+  margin: auto;
+  width: 18rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters-header > div > i {
+  color: black;
+  font-size: 1.5rem;
+}
+
+.filters-count {
+  border: 1px solid black;
+  padding: 0.25rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  width: 8rem;
+}
 
 /* animation helper classes */
 
