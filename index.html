@@ -106,19 +106,29 @@
             <i v-if="item.available" class="bi-check-circle available" title="Avaliable"></i>
             <i v-else class="bi-x-circle not-available" title="Not avaliable"></i>
           </div>  
-        </div>          
+        </div>
+        
         <!-- Selected apartment details -->
-        <div v-if="selected !== null">
-          <h2>Apartment {{ selectedData.code }}</h2>
-          <h3>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</h3>
-          <p>
-            <span v-if="selectedData.customColors">C</span>&nbsp;
-            <span v-if="selectedData.customMods">M</span>&nbsp;
-            <span v-if="selectedData.secure">S</span>
-          </p>
-          <p>{{ selectedData.description }}</p>
+        <div class="details" v-if="selected !== null">
+          <div class="details-header details-grid-header">
+            <h2 class="details-header-text">Apartment {{ selectedData.code }}</h2>
+            <div class="details-subheader-container">
+              <p>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</p>
+              <div class="details-subheader-icons">
+                <i v-if="selectedData.customColors" class="bi-palette"></i>
+                <i v-if="selectedData.customMods" class="bi-tools"></i>
+                <i v-if="selectedData.secure" class="bi-shield-lock"></i>
+              </div>
+            </div>
+          </div>
+          <div class="details-image details-grid-image">
+            <img class="details-image-main" src="photos/01.jpg" />
+          </div>
+          <div class="details-description details-grid-description">
+            {{ selectedData.description }}
+          </div>
           <!-- Custom price calculation form -->
-          <div>
+          <div class="details-form details-grid-form">
             <div>
               <label for="furnishing">Furnishing assistance</label>
               <input name="furnishing" type="checkbox" v-model="perks.furnishing">
@@ -127,9 +137,17 @@
               <label for="billing">Flexible billing</label>
               <input name="billing" type="checkbox" v-model="perks.billing">
             </div>
-            <p>Calculated price: {{ calculatedPrice }}</p>
+            <div>
+              <hr class="separator-wide" />
+            </div>
+            <div>
+              <p>Calculated price</p>
+              <p>${{ calculatedPrice }}/sqm</p>
+            </div>
           </div>
-          <button>Contact the sales agent</button>
+          <div class="details-button details-grid-button">
+            <button class="contact-button">Contact the sales agent</button>
+          </div>
         </div>
 
         <!-- Placeholder when no apartment is selected -->

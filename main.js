@@ -15,7 +15,7 @@ const app = Vue.createApp({
         bathroom: null,
         storage: null
       },
-      selected: null,
+      selected: 0,
       perks: {
         furnishing: false,
         billing: false
