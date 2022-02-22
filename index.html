@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;400;700&display=swap" rel="stylesheet">     
-    <script src="https://unpkg.com/vue@3"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-    <title>vueApartments</title>
-  </head>
 
-  <body>
-    
-    <header>
-      <div class="header-container">
-        <div class="header-text"><strong>vue</strong>Apartments</div>
-        <!-- Desktop full size navigation -->
-        <nav class="nav-desktop">
-          <a href="#">About us</a>
-          <a href="#">Apartments</a>
-          <a href="#">Contact</a>
-        </nav>
-        <!-- Mobile navigation toggle -->
-        <button class="nav-toggle" id="nav-toggle">
-          <img src="img/list.svg" alt="Open navigation" class="nav-open-icon toggle-display" id="nav-open-icon" />
-          <img src="img/x-lg.svg" alt="Close navigation" class="nav-close-icon invisible toggle-display" id="nav-close-icon" />
-        </button>
-      </div>
-      <!-- Mobile navigation -->
-      <nav class="nav-mini hidden invisible toggle-display" id="nav-mini">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vue@3"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <title>vueApartments</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-text"><strong>vue</strong>Apartments</div>
+      <!-- Desktop full size navigation -->
+      <nav class="nav-desktop">
         <a href="#">About us</a>
         <a href="#">Apartments</a>
         <a href="#">Contact</a>
       </nav>
-    </header>
-    
+      <!-- Mobile navigation toggle -->
+      <button class="nav-toggle" id="nav-toggle">
+        <img src="img/list.svg" alt="Open navigation" class="nav-open-icon toggle-display" id="nav-open-icon" />
+        <img src="img/x-lg.svg" alt="Close navigation" class="nav-close-icon invisible toggle-display"
+          id="nav-close-icon" />
+      </button>
+    </div>
+    <!-- Mobile navigation -->
+    <nav class="nav-mini hidden invisible toggle-display" id="nav-mini">
+      <a href="#">About us</a>
+      <a href="#">Apartments</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-    <main>
-      <div id="app">
 
-        <!-- Filter settings -->
-        
-        <!-- Filters header - always displayed -->
-        <div class="filters-header">
-          <div>
-            <i class="bi-x-lg click" title="Reset filters" @click="resetFilters" ></i>
-            <p class="filters-count">{{ filterCount }} active</p>
-            <i class="bi-chevron-down rotateable click" :class="{ rotated: displayFilters }" @click="toggleFiltersDisplay"></i>
-          </div>
+  <main>
+    <div id="app">
+
+      <!-- Filter settings -->
+
+      <!-- Filters header - always displayed -->
+      <div class="filters-header">
+        <div>
+          <i class="bi-x-lg click" title="Reset filters" @click="resetFilters"></i>
+          <p class="filters-count">{{ filterCount }} active</p>
+          <i class="bi-chevron-down rotateable click" :class="{ rotated: displayFilters }"
+            @click="toggleFiltersDisplay"></i>
         </div>
+      </div>
 
-        <!-- Filters options - extendable -->
-        <Transition>
+      <!-- Filters options - extendable -->
+      <Transition>
         <div class="filters" v-show="displayFilters">
           <div class="filters-controls-container">
             <div class="filter-range-container">
@@ -68,7 +71,7 @@
                 <label for="minSize">Minimum size</label>
                 <p>{{ filters.minSize ? `${filters.minSize} sqm` : 'not set' }}</p>
               </div>
-                <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
+              <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
             </div>
             <div class="filter-range-container">
               <div>
@@ -89,91 +92,108 @@
             </div>
           </div>
         </div>
-        </Transition>
-            
-        <!-- Apartments list, filterable -->
-        <div class="apartments-list">
-          <div v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)" class="list-item">
-            <div class="list-item-info">
-              <p class="list-item-header">Apartment {{ item.code }}</p>
-              <p class="list-item-type">{{ item.bedrooms }} bedroom {{ item.type }}</p>
-              <p class="list-item-icons">
-                <i v-if="item.customColors" class="bi-palette"></i>
-                <i v-if="item.customMods" class="bi-tools"></i>
-                <i v-if="item.secure" class="bi-shield-lock"></i>
-              </p>  
-            </div>  
-            <i v-if="item.available" class="bi-check-circle available" title="Avaliable"></i>
-            <i v-else class="bi-x-circle not-available" title="Not avaliable"></i>
-          </div>  
-        </div>
-        
-        <!-- Selected apartment details -->
-        <div class="details" v-if="selected !== null">
-          <div class="details-header details-grid-header">
-            <h2 class="details-header-text">Apartment {{ selectedData.code }}</h2>
-            <div class="details-subheader-container">
-              <p>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</p>
-              <div class="details-subheader-icons">
-                <i v-if="selectedData.customColors" class="bi-palette"></i>
-                <i v-if="selectedData.customMods" class="bi-tools"></i>
-                <i v-if="selectedData.secure" class="bi-shield-lock"></i>
-              </div>
-            </div>
-          </div>
-          <div class="details-image details-grid-image">
-            <img class="details-image-main" src="photos/01.jpg" />
-          </div>
-          <div class="details-description details-grid-description">
-            {{ selectedData.description }}
-          </div>
-          <!-- Custom price calculation form -->
-          <div class="details-form details-grid-form">
-            <div>
-              <label for="furnishing">Furnishing assistance</label>
-              <input name="furnishing" type="checkbox" v-model="perks.furnishing">
-            </div>
-            <div>
-              <label for="billing">Flexible billing</label>
-              <input name="billing" type="checkbox" v-model="perks.billing">
-            </div>
-            <div>
-              <hr class="separator-wide" />
-            </div>
-            <div>
-              <p>Calculated price</p>
-              <p>${{ calculatedPrice }}/sqm</p>
-            </div>
-          </div>
-          <div class="details-button details-grid-button">
-            <button class="contact-button">Contact the sales agent</button>
-          </div>
-        </div>
+      </Transition>
 
-        <!-- Placeholder when no apartment is selected -->
-        <!-- TODO control display with class binding so its rendered at the start, for seo -->
-        <div v-else>
-          <h2>Apartments ready to live in</h2>
-          <p>promotional text</p>
-          <button>Contact the sales agent</button>
+      <!-- Apartments list, filterable -->
+      <div class="apartments-list">
+        <div v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)" class="list-item">
+          <div class="list-item-info">
+            <p class="list-item-header">Apartment {{ item.code }}</p>
+            <p class="list-item-type">{{ item.bedrooms }} bedroom {{ item.type }}</p>
+            <p class="list-item-icons">
+              <i v-if="item.customColors" class="bi-palette"></i>
+              <i v-if="item.customMods" class="bi-tools"></i>
+              <i v-if="item.secure" class="bi-shield-lock"></i>
+            </p>
+          </div>
+          <i v-if="item.available" class="bi-check-circle available" title="Avaliable"></i>
+          <i v-else class="bi-x-circle not-available" title="Not avaliable"></i>
         </div>
-
       </div>
-    </main>
 
-    <footer>
-      <nav>
-        <a>Homepage</a>
-        <a>Apartments</a>
-        <a>Company info</a>
-        <a>Privacy policy</a>
-      </nav>
-      <hr />
-      <p>vueApartments</p>
-    </footer>
-  </body>
+      <!-- Selected apartment details -->
+      <div class="details responsive-grid details-grid" v-if="selected !== null">
+        <div class="details-header details-grid-header">
+          <h2 class="details-header-text">Apartment {{ selectedData.code }}</h2>
+          <div class="details-subheader-container">
+            <p>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</p>
+            <div class="details-subheader-icons">
+              <i v-if="selectedData.customColors" class="bi-palette"></i>
+              <i v-if="selectedData.customMods" class="bi-tools"></i>
+              <i v-if="selectedData.secure" class="bi-shield-lock"></i>
+            </div>
+          </div>
+        </div>
+        <div class="details-image details-grid-image">
+          <img class="details-image-main" src="photos/01.jpg" />
+        </div>
+        <div class="details-description details-grid-description">
+          {{ selectedData.description }}
+        </div>
+        <!-- Custom price calculation form -->
+        <div class="details-form details-grid-form">
+          <div>
+            <label for="furnishing">Furnishing assistance</label>
+            <input name="furnishing" type="checkbox" v-model="perks.furnishing">
+          </div>
+          <div>
+            <label for="billing">Flexible billing</label>
+            <input name="billing" type="checkbox" v-model="perks.billing">
+          </div>
+          <div>
+            <hr class="separator-wide" />
+          </div>
+          <div>
+            <p>Calculated price</p>
+            <p>${{ calculatedPrice }}/sqm</p>
+          </div>
+        </div>
+        <div class="details-button details-grid-button">
+          <button class="contact-button">Contact the sales agent</button>
+        </div>
+      </div>
 
-  <script src="main.js" type="module"></script>
-  <script src="nav.js"></script>
+      <!-- Placeholder when no apartment is selected -->
+      <!-- TODO control display with class binding so its rendered at the start, for seo -->
+      <div v-else class="details responsive-grid details-placeholder-grid">
+        <div class="details-header details-grid-header">
+          <h2 class="details-header-text">Apartments to live in</h2>
+        </div>
+        <div class="details-image details-grid-image">
+          <img class="details-image-main" src="photos/00.jpg" />
+        </div>
+        <div class="details-description details-grid-description">
+          <p>
+            Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum
+            rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
+            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
+          </p>
+          <p>
+            Pullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+            vulputate eleifend tellus.
+          </p>
+        </div>
+        <div class="details-button details-grid-button">
+          <button class="contact-button">Contact the sales agent</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <nav>
+      <a>Homepage</a>
+      <a>Apartments</a>
+      <a>Company info</a>
+      <a>Privacy policy</a>
+    </nav>
+    <hr />
+    <p>vueApartments</p>
+  </footer>
+</body>
+
+<script src="main.js" type="module"></script>
+<script src="nav.js"></script>
 
 </html>

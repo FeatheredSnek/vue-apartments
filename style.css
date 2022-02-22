@@ -47,12 +47,19 @@ hr {
 
 @media screen and (min-width: 768.01px) {
   /* 2 column details grid for larger screens */
-  .details {
+  .details-grid {
     grid-template-areas: 
-    'header header image image image'
-    'description description image image image'
-    'form form image image image'
-    'button button image image image';
+      'header header image image image'
+      'description description image image image'
+      'form form image image image'
+      'button button image image image';
+  }
+  /* same grid without form for placeholder content */
+  .details-placeholder-grid {
+    grid-template-areas: 
+      'header header image image image'
+      'description description image image image'
+      'button button image image image';
   }
 }
 
@@ -64,14 +71,22 @@ hr {
   .nav-toggle {
     display: block !important;
   }
-  .details {
+  .details-grid {
     /* single column linear display for small screens */
     grid-template-areas: 
-    'header'
-    'image'
-    'description'
-    'form'
-    'button';
+      'header'
+      'image'
+      'description'
+      'form'
+      'button';
+  }
+  /* same grid without form for placeholder content */
+  .details-placeholder-grid {
+    grid-template-areas: 
+      'header'
+      'image'
+      'description'
+      'button';
   }
 }
 
@@ -410,9 +425,12 @@ input[type="checkbox"]:checked {
   grid-area: image;
 }
 
-.details {
+.responsive-grid {
   display: grid;
   gap: 0 4rem;
+}
+
+.details {
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
