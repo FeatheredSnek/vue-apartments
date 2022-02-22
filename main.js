@@ -20,7 +20,8 @@ const app = Vue.createApp({
         furnishing: false,
         billing: false
       },
-      perkValues: {...perkValues}
+      perkValues: {...perkValues},
+      displayFilters: false
     }
   },
   computed: {
@@ -75,9 +76,13 @@ const app = Vue.createApp({
       for (let fieldName in this.filters) {
         this.filters[fieldName] = null
       }
+      this.displayFilters = false
     },
     selectApartment (code) {
       this.selected = this.static.findIndex(el => el.code === code)
+    },
+    toggleFiltersDisplay () {
+      this.displayFilters = !this.displayFilters
     }
   }
 })

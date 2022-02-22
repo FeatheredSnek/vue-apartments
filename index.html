@@ -46,14 +46,15 @@
         <!-- Filters header - always displayed -->
         <div class="filters-header">
           <div>
-            <i class="bi-x-lg" title="Reset filters" @click="resetFilters" ></i>
+            <i class="bi-x-lg click" title="Reset filters" @click="resetFilters" ></i>
             <p class="filters-count">{{ filterCount }} active</p>
-            <i class="bi-chevron-down" @click="openFilters"></i>
+            <i class="bi-chevron-down rotateable click" :class="{ rotated: displayFilters }" @click="toggleFiltersDisplay"></i>
           </div>
         </div>
 
         <!-- Filters options - extendable -->
-        <div class="filters">
+        <Transition>
+        <div class="filters" v-show="displayFilters">
           <div class="filters-controls-container">
             <div class="filter-range-container">
               <div>
@@ -88,6 +89,7 @@
             </div>
           </div>
         </div>
+        </Transition>
             
         <!-- Apartments list, filterable -->
         <div class="apartments-list">

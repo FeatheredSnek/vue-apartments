@@ -342,6 +342,28 @@ input[type="checkbox"]:checked {
   width: 8rem;
 }
 
+/* vue transition animation classes */
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+/* chevron button rotation */
+
+.rotateable {
+  transition: transform 0.5s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
 /* animation helper classes */
 
 .hidden {
@@ -358,4 +380,10 @@ input[type="checkbox"]:checked {
 
 .toggle-display {
   transition: opacity 0.5s;
+}
+
+/* general helpers */
+
+.click {
+  cursor: pointer;
 }
