@@ -598,6 +598,14 @@ footer {
   opacity: 0;
 }
 
+.visible {
+  opacity: 1;
+}
+
+.toggle-visibility {
+  transition: opacity 0.5s ease;
+}
+
 .toggle-display {
   transition: opacity 0.5s;
 }

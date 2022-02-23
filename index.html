@@ -114,11 +114,10 @@
       <div class="separator">
         <hr/>
       </div>
-      <!-- <hr class="sep" /> -->
 
       <Transition mode="out-in">
       <!-- Selected apartment details -->
-      <div class="details responsive-grid details-grid" v-if="selected !== null">
+      <div v-if="selected !== null" class="details responsive-grid details-grid toggle-visibility" :class="{ invisible: !detailsDisplayState }">
         <div class="details-header details-grid-header">
           <h2 class="details-header-text">Apartment {{ selectedData.code }}</h2>
           <div class="details-subheader-container">
@@ -160,7 +159,6 @@
       </div>
 
       <!-- Placeholder when no apartment is selected -->
-      <!-- TODO control display with class binding so its rendered at the start, for seo -->
       <div v-else class="details responsive-grid details-placeholder-grid">
         <div class="details-header details-grid-header">
           <h2 class="details-header-text">Apartments to live in</h2>

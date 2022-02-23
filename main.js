@@ -15,13 +15,29 @@ const app = Vue.createApp({
         bathroom: null,
         storage: null
       },
-      selected: 0,
+      selected: null,
+      detailsDisplayId: null,
+      detailsDisplayState: true,
       perks: {
         furnishing: false,
         billing: false
       },
       perkValues: {...perkValues},
       displayFilters: false
+    }
+  },
+  watch: {
+    // whenever selected changes apply transition to details element
+    selected(newValue, oldValue) {
+      // run custom transition only if details element is displayed
+      if (oldValue !== null) {
+        // apply transition using ref and timeout timings
+        this.updateDetailsDisplay(newValue)
+      }
+      // else rely on v-transition between placeholder and display elements
+      else {
+        this.detailsDisplayId = newValue
+      }
     }
   },
   computed: {
@@ -53,8 +69,8 @@ const app = Vue.createApp({
       }
     },
     selectedData () {
-      if (this.selected !== null) {
-        return this.static[this.selected]
+      if (this.detailsDisplayId !== null) {
+        return this.static[this.detailsDisplayId]
       }
       else {
         // returns empty object so all the properties are blank (undefined)
@@ -83,6 +99,16 @@ const app = Vue.createApp({
     },
     toggleFiltersDisplay () {
       this.displayFilters = !this.displayFilters
+    },
+    updateDetailsDisplay (selectValue) {
+      const transitionTime = 500
+      console.log('selection update handler');
+      this.detailsDisplayState = false
+      setTimeout(function(){
+        console.log('finish updating, show result');
+        this.detailsDisplayState = true
+        this.detailsDisplayId = selectValue
+      }.bind(this), transitionTime)
     }
   }
 })
