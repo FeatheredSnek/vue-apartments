@@ -96,7 +96,7 @@
 
       <!-- Apartments list, filterable -->
       <div class="apartments-list">
-        <div v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)" class="list-item">
+        <div v-for="item in filteredResults" :key="item.code" @click="selectApartment(item.code)" class="list-item button-primary" :class="{ hoverable: item.available }">
           <div class="list-item-info">
             <p class="list-item-header">Apartment {{ item.code }}</p>
             <p class="list-item-type">{{ item.bedrooms }} bedroom {{ item.type }}</p>
@@ -179,7 +179,7 @@
           </p>
         </div>
         <div class="details-button details-grid-button">
-          <button class="contact-button">Contact the sales agent</button>
+          <button class="contact-button button-primary hoverable">Contact the sales agent</button>
         </div>
       </div>
 

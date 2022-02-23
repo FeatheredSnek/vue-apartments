@@ -224,15 +224,6 @@ header {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  transition: all 0.5s;
-  outline: solid 1px white;
-  box-shadow: var(--shadow-basic);
-}
-
-.list-item:hover {
-  outline: solid 1px #d2d2d2;
-  box-shadow: var(--shadow-pressed);
 }
 
 .list-item > i {
@@ -547,17 +538,14 @@ input[type="checkbox"]:checked {
   justify-content: center;
 }
 
-/* TODO hover(able) effects to separate class, apply here */
 .details-button > button {
   position: relative;
   border: none;
   background: var(--white);
-  box-shadow: var(--shadow-basic);
   font-size: 1.2rem;
   padding: 0 3rem;
   height: 3em;
   border-radius: 3rem;
-  cursor: pointer;
 }
 
 /* footer styling */
@@ -615,6 +603,21 @@ footer {
 }
 
 /* general helpers */
+
+.button-primary {
+  transition: outline 0.5s ease, box-shadow 0.5s ease;
+  outline: solid 1px white;
+  box-shadow: var(--shadow-basic);
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.hoverable:hover {
+  outline: solid 1px #ddd;
+  box-shadow: var(--shadow-pressed);
+}
 
 .click {
   cursor: pointer;
