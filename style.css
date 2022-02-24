@@ -100,14 +100,14 @@ hr {
 /* 2 column apartment list */
 @media screen and (min-width: 768.01px) and (max-width: 1080px) {
   .apartments-list {
-    grid-template: auto / auto auto;
+    grid-template: auto / 1fr 1fr;
   }
 }
 
 /* 3 column apartment list */
 @media screen and (min-width: 1080.01px) {
   .apartments-list {
-    grid-template: auto / auto auto auto;
+    grid-template: auto / 1fr 1fr 1fr;
   }
 }
 
