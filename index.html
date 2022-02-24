@@ -101,9 +101,9 @@
             <p class="list-item-header">Apartment {{ item.code }}</p>
             <p class="list-item-type">{{ item.bedrooms }} bedroom {{ item.type }}</p>
             <p class="list-item-icons">
-              <i v-if="item.customColors" class="bi-palette"></i>
-              <i v-if="item.customMods" class="bi-tools"></i>
-              <i v-if="item.secure" class="bi-shield-lock"></i>
+              <i v-if="item.customColors" class="bi-palette" title="Custom colors"></i>
+              <i v-if="item.customMods" class="bi-tools" title="Modifications by request"></i>
+              <i v-if="item.secure" class="bi-shield-lock" title="Additional security"></i>
             </p>
           </div>
           <i v-if="item.available" class="bi-check-circle available" title="Avaliable"></i>
@@ -123,9 +123,9 @@
           <div class="details-subheader-container">
             <p>{{ selectedData.bedrooms }} bedroom {{ selectedData.type }}</p>
             <div class="details-subheader-icons">
-              <i v-if="selectedData.customColors" class="bi-palette"></i>
-              <i v-if="selectedData.customMods" class="bi-tools"></i>
-              <i v-if="selectedData.secure" class="bi-shield-lock"></i>
+              <i v-if="selectedData.customColors" class="bi-palette" title="Custom colors"></i>
+              <i v-if="selectedData.customMods" class="bi-tools" title="Modifications by request"></i>
+              <i v-if="selectedData.secure" class="bi-shield-lock" title="Additional security"></i>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
           <h2 class="details-header-text">Apartments to live in</h2>
         </div>
         <div class="details-image details-grid-image">
-          <img class="details-image-main" src="photos/00.jpg" />
+          <img class="details-image-main" src="photos/placeholder.jpg" />
         </div>
         <div class="details-description details-grid-description">
           <p>
