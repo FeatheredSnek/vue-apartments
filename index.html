@@ -64,21 +64,21 @@
                 <label for="maxPrice">Max price per sqm</label>
                 <p>{{ filters.maxPrice ? `$${filters.maxPrice}` : 'not set' }}</p>
               </div>
-              <input name="maxPrice" type="range" min="300" max="1000" step="50" v-model="filters.maxPrice" />
+              <input name="maxPrice" type="range" :min="filterRanges.basePrice.min" :max="filterRanges.basePrice.max" step="50" v-model="filters.maxPrice" />
             </div>
             <div class="filter-range-container">
               <div>
                 <label for="minSize">Minimum size</label>
                 <p>{{ filters.minSize ? `${filters.minSize} sqm` : 'not set' }}</p>
               </div>
-              <input name="minSize" type="range" min="20" max="80" step="1" v-model="filters.minSize" />
+              <input name="minSize" type="range" :min="filterRanges.size.min" :max="filterRanges.size.max" step="1" v-model="filters.minSize" />
             </div>
             <div class="filter-range-container">
               <div>
                 <label for="bedrooms">Bedrooms {{ filters.bedrooms }}</label>
                 <p>{{ filters.bedrooms ? filters.bedrooms : 'not set' }}</p>
               </div>
-              <input name="bedrooms" type="range" min="1" max="4" step="1" v-model="filters.bedrooms" />
+              <input name="bedrooms" type="range" :min="filterRanges.bedrooms.min" :max="filterRanges.bedrooms.max" step="1" v-model="filters.bedrooms" />
             </div>
             <div class="filter-checks-container">
               <div>

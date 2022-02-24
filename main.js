@@ -68,6 +68,19 @@ const app = Vue.createApp({
         return `${count} filters`
       }
     },
+    // create computed property to bind input ranges to data values
+    // nested object is a bit confusing, but its 3 computeds squashed to 1
+    filterRanges () {
+      let ranges = {}
+      let rangeableDataFields = ['basePrice', 'size', 'bedrooms']
+      for (let fieldName of rangeableDataFields) {
+        let arr = []
+        this.static.forEach(el => arr.push(el[fieldName]))
+        arr.sort((a, b) => a - b)
+        ranges[fieldName] = {min: arr[0], max:arr[arr.length-1]}
+      }
+      return ranges
+    },
     selectedData () {
       if (this.detailsDisplayId !== null) {
         return this.static[this.detailsDisplayId]
