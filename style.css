@@ -13,72 +13,39 @@ html {
   --shadow-pressed: 0px 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
 }
 
-/* generic element styling */
+/* media queries */
 
-p {
-  margin: 0;
-  padding: 0;
-}
-
-
-hr {
-  border: none;
-}
-
-/* TODO clean up and organize media queries */
-/* small screen display */
+/* up to XS breakpoint - mobile screen */
 @media screen and (max-width: 576px)  {
+  /* small mobile header */
   header {
     height: 5rem !important;
   }
+  /* single column apartment list */
   .apartments-list {
     grid-template: auto / auto;
   }
+  /* single column filters controls */
   .filters-controls-container {
     grid-template: auto / auto;
   }
+  /* single column footer links */
   .footer-nav {
     flex-direction: column;
   }
 }
 
-/* filters controls in 2 columns on not-small screens */
-@media screen and (min-width: 576.01px) {
-  .filters-controls-container {
-    grid-template: auto / auto auto;
-  }
-}
-
-@media screen and (min-width: 768.01px) {
-  /* 2 column details grid for larger screens */
-  .details-grid {
-    grid-template-columns: 1.3fr 1.3fr 0.8fr 0.8fr 0.8fr;
-    grid-template-areas: 
-      'header header image image image'
-      'description description image image image'
-      'form form image image image'
-      'button button image image image';
-  }
-  /* same grid without form for placeholder content */
-  .details-placeholder-grid {
-    grid-template-columns: 1.3fr 1.3fr 0.8fr 0.8fr 0.8fr;
-    grid-template-areas: 
-      'header header image image image'
-      'description description image image image'
-      'button button image image image';
-  }
-}
-
-/* navigation toggleable with hamburger on smallish screens */
+/* up to S breakpoint - mobile and tablet screen */
 @media screen and (max-width: 768px)  {
+  /* hamburger navigation */
   .nav-desktop {
     display: none !important;
   }
   .nav-toggle {
     display: block !important;
   }
+  /* single column display for details  */
   .details-grid {
-    /* single column linear display for small screens */
     grid-template-areas: 
       'header'
       'image'
@@ -86,7 +53,7 @@ hr {
       'form'
       'button';
   }
-  /* same grid without form for placeholder content */
+  /* single column display for details placeholder (no form) */
   .details-placeholder-grid {
     grid-template-areas: 
       'header'
@@ -100,18 +67,57 @@ hr {
   }
 }
 
-/* 2 column apartment list */
-@media screen and (min-width: 768.01px) and (max-width: 1080px) {
+/* over XS breakpoint - tablet and desktop screens */
+@media screen and (min-width: 576.01px) {
+  /* filter controls in 2 columns */
+  .filters-controls-container {
+    grid-template: auto / auto auto;
+  }
+}
+
+/* over S breakpoint - tablet and desktop screens */
+@media screen and (min-width: 768.01px) {
+  /* 2 column details */
+  .details-grid {
+    grid-template-columns: 1.3fr 1.3fr 0.8fr 0.8fr 0.8fr;
+    grid-template-areas: 
+      'header header image image image'
+      'description description image image image'
+      'form form image image image'
+      'button button image image image';
+  }
+  /* 2 column details placeholder (no form) */
+  .details-placeholder-grid {
+    grid-template-columns: 1.3fr 1.3fr 0.8fr 0.8fr 0.8fr;
+    grid-template-areas: 
+      'header header image image image'
+      'description description image image image'
+      'button button image image image';
+  }
+  /* two columns apartments list */
   .apartments-list {
     grid-template: auto / 1fr 1fr;
   }
 }
 
-/* 3 column apartment list */
+/* over L breakpoints - large screens */
 @media screen and (min-width: 1080.01px) {
+  /* three columns apartments list */
   .apartments-list {
     grid-template: auto / 1fr 1fr 1fr;
   }
+}
+
+/* generic element styling */
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+hr {
+  border: none;
 }
 
 body {
