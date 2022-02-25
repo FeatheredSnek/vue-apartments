@@ -92,7 +92,6 @@ const app = Vue.createApp({
     },
     imageStyleObject () {
       let obj = {
-        // backgroundImage: this.selected === null ? 'none' : this.selectedData.sele
         backgroundImage: `url('photos/${this.selectedData.image}.jpg')`
       }
       return obj
@@ -115,7 +114,14 @@ const app = Vue.createApp({
       this.displayFilters = false
     },
     selectApartment (code) {
-      this.selected = this.static.findIndex(el => el.code === code)
+      let index = this.static.findIndex(el => el.code === code)
+      if (this.static[index].available) {
+        this.scrollToSeparator()
+        this.selected = index
+      }
+      else {
+        return
+      }
     },
     toggleFiltersDisplay () {
       this.displayFilters = !this.displayFilters
@@ -127,6 +133,9 @@ const app = Vue.createApp({
         this.detailsDisplayState = true
         this.detailsDisplayId = selectValue
       }.bind(this), transitionTime)
+    },
+    scrollToSeparator () {
+      this.$refs.separator.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
     }
   }
 })
