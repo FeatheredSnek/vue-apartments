@@ -121,11 +121,9 @@ const app = Vue.createApp({
       this.displayFilters = !this.displayFilters
     },
     updateDetailsDisplay (selectValue) {
-      const transitionTime = 500
-      console.log('selection update handler');
+      const transitionTime = 600
       this.detailsDisplayState = false
       setTimeout(function(){
-        console.log('finish updating, show result');
         this.detailsDisplayState = true
         this.detailsDisplayId = selectValue
       }.bind(this), transitionTime)
