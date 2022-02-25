@@ -90,6 +90,13 @@ const app = Vue.createApp({
         return {}
       }
     },
+    imageStyleObject () {
+      let obj = {
+        // backgroundImage: this.selected === null ? 'none' : this.selectedData.sele
+        backgroundImage: `url('photos/${this.selectedData.image}.jpg')`
+      }
+      return obj
+    },
     calculatedPrice () {
       let price = this.selectedData.basePrice
       for (let fieldName in this.perks) {
